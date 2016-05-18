@@ -48,7 +48,6 @@ input,textarea,select,button{
 .cur_bg{
 	background:#000;
 	opacity:0.8;
-	filter:alpha(opacity = 80);
 }
 .close{
 	display: block;
@@ -76,7 +75,6 @@ input,textarea,select,button{
 	position : fixed;
 	_position : absolute;
 	opacity : 0.8;
-	filter:Alpha(opacity = 80);
 }
 .icon{
 	display:inline-block;

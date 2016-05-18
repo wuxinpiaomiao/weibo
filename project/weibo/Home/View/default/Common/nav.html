@@ -11,10 +11,10 @@
             <div class='top_wrap'>
                 <div class="logo fleft"></div>
                 <ul class='top_left fleft'>
-                    <li class='cur_bg'><a href='__APP__'>首页</a></li>
-                    <li><a href="{:U('User/letter')}">私信</a></li>
-                    <li><a href="{:U('User/comment')}">评论</a></li>
-                    <li><a href="{:U('User/atme')}">@我</a></li>
+                    <li class='cur_bg'><a href='{:U("Home/Index/index")}'>首页</a></li>
+                    <li><a href="{:U('Home/User/letter')}">私信</a></li>
+                    <li><a href="{:U('Home/User/comment')}">评论</a></li>
+                    <li><a href="{:U('Home/User/atme')}">@我</a></li>
                 </ul>
                 <div id="search" class='fleft'>
                     <form action='{:U("Search/sechUser")}' method='get'>
@@ -23,23 +23,24 @@
                     </form>
                 </div>
                 <div class="user fleft">
+
                     <a href="{:U('/' . session('uid'))}"><php>echo (M('userinfo')->where(array('uid' => session('uid')))->getField('username'));</php></a>
                 </div>
                 <ul class='top_right fleft'>
                     <li title='快速发微博' class='fast_send'><i class='icon icon-write'></i></li>
                     <li class='selector'><i class='icon icon-msg'></i>
                         <ul class='hidden'>
-                            <li><a href="{:U('User/comment')}">查看评论</a></li>
-                            <li><a href="{:U('User/letter')}">查看私信</a></li>
-                            <li><a href="{:U('User/keep')}">查看收藏</a></li>
-                            <li><a href="{:U('User/atme')}">查看@我</a></li>
+                            <li><a href="{:U('Home/User/comment')}">查看评论</a></li>
+                            <li><a href="{:U('Home/User/letter')}">查看私信</a></li>
+                            <li><a href="{:U('Home/User/keep')}">查看收藏</a></li>
+                            <li><a href="{:U('Home/User/atme')}">查看@我</a></li>
                         </ul>
                     </li>
                     <li class='selector'><i class='icon icon-setup'></i>
                         <ul class='hidden'>
-                            <li><a href="{:U('UserSetting/index')}">帐号设置</a></li>
+                            <li><a href="{:U('Home/UserSetting/index')}">帐号设置</a></li>
                             <li><a href="" class='set_model'>模版设置</a></li>
-                            <li><a href="{:U('Index/loginOut')}">退出登录</a></li>
+                            <li><a href="{:U('Home/Index/loginOut')}">退出登录</a></li>
                         </ul>
                     </li>
                 <!--信息推送-->

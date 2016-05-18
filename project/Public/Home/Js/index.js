@@ -19,7 +19,7 @@ $(function () {
 		//上传成功后的回调函数
 		onUploadSuccess : function (file, data, response) {
 			eval('var data = ' + data);
-			console.log = data;
+			// console.log = data;
 			if (data.status) {
 				$('input[name=max]').val(data.path.max);
 				$('input[name=medium]').val(data.path.medium);

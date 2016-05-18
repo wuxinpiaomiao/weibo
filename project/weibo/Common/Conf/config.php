@@ -18,5 +18,16 @@ return array(
 	// 字符集
 	'DB_CHARSET'=> 'utf8', 
 	// 设置默认的模板主题
-	'DEFAULT_THEME' => 'default'
+	'DEFAULT_THEME' => 'default',
+
+	// 伪静态
+	//伪静态
+	'URL_HTML_SUFFIX'=>'html',
+	// 'SHOW_PAGE_TRACE' =>true,
+	//设置url模式
+	'URL_MODEL' => 2,
+
+	//邮箱配置
+	'EmailUsername'=>'13916973756@163.com',
+	'EmailPassword'=>'lu006519'
 );

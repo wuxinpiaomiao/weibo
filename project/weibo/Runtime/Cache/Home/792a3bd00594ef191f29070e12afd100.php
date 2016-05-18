@@ -34,10 +34,10 @@
             <div class='top_wrap'>
                 <div class="logo fleft"></div>
                 <ul class='top_left fleft'>
-                    <li class='cur_bg'><a href=''>首页</a></li>
-                    <li><a href="<?php echo U('User/letter');?>">私信</a></li>
-                    <li><a href="<?php echo U('User/comment');?>">评论</a></li>
-                    <li><a href="<?php echo U('User/atme');?>">@我</a></li>
+                    <li class='cur_bg'><a href='<?php echo U("Home/Index/index");?>'>首页</a></li>
+                    <li><a href="<?php echo U('Home/User/letter');?>">私信</a></li>
+                    <li><a href="<?php echo U('Home/User/comment');?>">评论</a></li>
+                    <li><a href="<?php echo U('Home/User/atme');?>">@我</a></li>
                 </ul>
                 <div id="search" class='fleft'>
                     <form action='<?php echo U("Search/sechUser");?>' method='get'>
@@ -46,23 +46,24 @@
                     </form>
                 </div>
                 <div class="user fleft">
+
                     <a href="<?php echo U('/' . session('uid'));?>"><?php echo (M('userinfo')->where(array('uid' => session('uid')))->getField('username')); ?></a>
                 </div>
                 <ul class='top_right fleft'>
                     <li title='快速发微博' class='fast_send'><i class='icon icon-write'></i></li>
                     <li class='selector'><i class='icon icon-msg'></i>
                         <ul class='hidden'>
-                            <li><a href="<?php echo U('User/comment');?>">查看评论</a></li>
-                            <li><a href="<?php echo U('User/letter');?>">查看私信</a></li>
-                            <li><a href="<?php echo U('User/keep');?>">查看收藏</a></li>
-                            <li><a href="<?php echo U('User/atme');?>">查看@我</a></li>
+                            <li><a href="<?php echo U('Home/User/comment');?>">查看评论</a></li>
+                            <li><a href="<?php echo U('Home/User/letter');?>">查看私信</a></li>
+                            <li><a href="<?php echo U('Home/User/keep');?>">查看收藏</a></li>
+                            <li><a href="<?php echo U('Home/User/atme');?>">查看@我</a></li>
                         </ul>
                     </li>
                     <li class='selector'><i class='icon icon-setup'></i>
                         <ul class='hidden'>
-                            <li><a href="<?php echo U('UserSetting/index');?>">帐号设置</a></li>
+                            <li><a href="<?php echo U('Home/UserSetting/index');?>">帐号设置</a></li>
                             <li><a href="" class='set_model'>模版设置</a></li>
-                            <li><a href="<?php echo U('Index/loginOut');?>">退出登录</a></li>
+                            <li><a href="<?php echo U('Home/Index/loginOut');?>">退出登录</a></li>
                         </ul>
                     </li>
                 <!--信息推送-->
@@ -217,13 +218,13 @@
 <?php if(!$weibo): ?>没有发布的微博
 <?php else: ?>
 
-<?php if(is_array($weibo)): foreach($weibo as $key=>$v): if(!$v["isturn"]): ?><!--====================普通微博样式====================-->
+<?php if(is_array($wb)): foreach($wb as $key=>$v): if(!$v["isturn"]): ?><!--====================普通微博样式====================-->
             <div class="weibo">
                 <!--头像-->
                 <div class="face">
                     <a href="<?php echo U('/' . $v['uid']);?>">
                         <img src="
-                        <?php if($v["face"]): ?>/Uploads/Face/<?php echo ($v["face"]); ?>
+                        <?php if($v["face"]): ?>/Public/Home/Uploads/Face/<?php echo ($v["face"]); ?>
                         <?php else: ?>
                             /Public/Home/Images/noface.gif<?php endif; ?>" width='50px' height='50px'/>
                     </a>
@@ -243,7 +244,7 @@
                     <?php if($v['max']): ?><dd>
                             <div class='wb_img'>
                             <!--小图-->
-                                <img src="/Uploads/Pic/<?php echo ($v["mini"]); ?>" class='mini_img'/>
+                                <img src="/Public/Home/Uploads/Pic/<?php echo ($v["mini"]); ?>" class='mini_img'/>
                                 <div class="img_tool hidden">
                                     <ul>
                                         <li>
@@ -253,11 +254,11 @@
                                         <li>|</li>
                                         <li>
                                             <i class='icon icon-bigpic'></i>
-                                            <a href="/Uploads/Pic/<?php echo ($v["max"]); ?>" target='_blank'>&nbsp;查看大图</a>
+                                            <a href="/Public/Home/Uploads/Pic/<?php echo ($v["max"]); ?>" target='_blank'>&nbsp;查看大图</a>
                                         </li>
                                     </ul>
                                 <!--中图-->
-                                    <div class="img_info"><img src="/Uploads/Pic/<?php echo ($v["medium"]); ?>"/></div>
+                                    <div class="img_info"><img src="/Public/Home/Uploads/Pic/<?php echo ($v["medium"]); ?>"/></div>
                                 </div>
                             </div>
                         </dd><?php endif; ?>
@@ -281,7 +282,7 @@
                     </div>
                 <!--=====回复框=====-->
                     <div class='comment_load hidden'>
-                        <img src="/Public/Images/loading.gif">评论加载中，请稍候...
+                        <img src="/Public/Home/Images/loading.gif">评论加载中，请稍候...
                     </div>
                     <div class='comment_list hidden'>
                         <textarea name="" sign='comment<?php echo ($key); ?>'></textarea>
@@ -305,7 +306,7 @@
                 <div class="face">
                     <a href="<?php echo U('/' . $v['uid']);?>">
                         <img src="
-                        <?php if($v["face"]): ?>/Uploads/Face/<?php echo ($v["face"]); ?>
+                        <?php if($v["face"]): ?>/Public/Home/Uploads/Face/<?php echo ($v["face"]); ?>
                         <?php else: ?>
                             /Public/Home/Images/noface.gif<?php endif; ?>" width='50' height='50'/>
                     </a>
@@ -420,7 +421,7 @@
     <dl class="user_face">
         <dt>
             <a href="<?php echo U('/' . $uid);?>">
-                <img src="<?php if($face): ?>/Uploads/Face/<?php echo ($face); else: ?>/Public/Home/Images/noface.gif<?php endif; ?>" width='80' height='80' alt="<?php echo ($username); ?>" />
+                <img src="<?php if($face): ?>/Public/<?php echo ($face); else: ?>/Public/Home/Images/noface.gif<?php endif; ?>" width='80' height='80' alt="<?php echo ($username); ?>" />
             </a>
         </dt>
         <dd>
@@ -445,7 +446,7 @@
                         <dl>
                             <dt>
                                 <a href="<?php echo U('/' . $uid);?>">
-                                    <img src="<?php if($face): ?>/Uploads/Face/<?php echo ($face); else: ?>/Public/Home/Images/noface.gif<?php endif; ?>" width='30' height='30'/>
+                                    <img src="<?php if($face): ?>/Public/<?php echo ($face); else: ?>/Public/Home/Images/noface.gif<?php endif; ?>" width='30' height='30'/>
                                 </a>
                             </dt>
                             <dd><a href="<?php echo U('/' . $uid);?>"><?php echo ($username); ?></a></dd>

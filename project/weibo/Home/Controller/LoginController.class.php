@@ -2,11 +2,11 @@
 namespace Home\Controller;
 use Think\Controller;
 class LoginController extends Controller {
-	//注册登录类
+    //注册登录类
 
-	//登陆页面
+    //登陆页面
     public function index(){
-    	$this->display();
+        $this->display();
     }
 
     //用户进行登录
@@ -34,13 +34,13 @@ class LoginController extends Controller {
     //注册页面;
     public function register(){
 
-    	$this->display();
+        $this->display();
     }
 
     //生成验证码
     public function CreateVcode(){
-    	$Verify = new \Think\Verify();
-		$Verify->entry();
+        $Verify = new \Think\Verify();
+        $Verify->entry();
     }
 
     //用户进行注册

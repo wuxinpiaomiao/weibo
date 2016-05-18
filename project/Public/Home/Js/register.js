@@ -1,5 +1,4 @@
 $(function () {
-
 	//声明全局变量
 	var CUSER = true;
 		//绑定表单事件
@@ -97,5 +96,4 @@ $(function () {
 				CUSER = false;
 			}
 		})
-
-});
+		});

@@ -134,95 +134,175 @@ $(function () {
     });
 
 
-    //创建好友分组
-   $('#create_group').click(function () {
+
+    //我的创建好友分组
+   $('#create_group').click(function(){
    		var groupLeft = ($(window).width() - $('#add-group').width()) / 2;
-	 	var groupTop = $(document).scrollTop() + ($(window).height() - $('#add-group').height()) / 2;
+	 		var groupTop = $(document).scrollTop() + ($(window).height() - $('#add-group').height()) / 2;
    		var gpObj = $('#add-group').show().css({
 	 		'left' : groupLeft,
 	 		'top' : groupTop
-	 	});
-   		createBg('group-bg');
-   		drag(gpObj, gpObj.find('.group_head'));
+	 		});
+   		//发送ajax增加group
+   		$('input[name=name]').blur(function(){
+	   		var gname = $('input[name=name]').val();
+	   		$('.add-group-sub').click(function(){
+		   		$.post('groupadd',{name:gname},function(data){
+		   			if(data==1){
+		   				var agroup = $('<li><a href=""><i class="icon icon-group"></i>&nbsp;&nbsp;'+gname+'</a></li>');
+		   				$('.addgrouplist').append(agroup);
+		   				$('#add-group').css('display','none');
+		   			}else{
+		   				alert('添加失败');
+		   			}
+		   		})
+	   		})			
+   		})
    });
+
    //异步创建分组
-   $('.add-group-sub').click(function () {
-   		var groupName = $('#gp-name').val();
-   		if (groupName != '') {
-   			$.post(addGroup, {name : groupName}, function (data) {
-   				if (data.status) {
-   					showTips(data.msg);
-   					$('#add-group').hide();
-   					$('#group-bg').remove();
-   				} else {
-   					alert(data.msg);
-   				}
-   			}, 'json');
-   		}
-   });
+   // $('.add-group-sub').click(function () {
+   // 		var groupName = $('#gp-name').val();
+   // 		if (groupName != '') {
+   // 			$.post(addGroup, {name : groupName}, function (data) {
+   // 				if (data.status) {
+   // 					showTips(data.msg);
+   // 					$('#add-group').hide();
+   // 					$('#group-bg').remove();
+   // 				} else {
+   // 					alert(data.msg);
+   // 				}
+   // 			}, 'json');
+   // 		}
+   // });
    //关闭
    $('.group-cencle').click(function () {
    		$('#add-group').hide();
    		$('#group-bg').remove();
    });
 
+   //我的好友关注部分
+   //关注好友
+   $('.add-fl').live('click',function(){
+   		var btn = $(this);
+   		//uid 所要关注人userinfo的uid
+   		var uid = btn.attr('uid');
+   		
+   		$('#follow').css('display','block').css('left',500+'px').css('top',200+'px');
+   		$('#follow .follow-cencle').click(function(){
+   			$('#follow').css('display','none');
+   		});
+   		$('#follow .add-follow-sub').click(function(){
+   			//添加到follow表里的gid
+   			var gid = $('#follow').find('select').val();
+   			var fans = btn.parents('.jiafensi').find('.delfans').html();
+   			$.post('follow',{uid:uid,gid:gid},function(data){
+   				$('#follow').css('display','none');
+   				if(data==1){
+   					var eachother = $('<dt>互相关注</dt><dd class="del-follow" uid='+uid+' type="1">移除</dd>');
+   					btn.parents('.jiafensi').find('.delfans').html(parseInt(fans)+1);
+   					// btn.parents('.list-right').find('dd').remove();
+   					btn.parents('.list-right').append(eachother);
+   					btn.remove();
+   					
+
+   				}else if(data == 2){
+   					btn.parents('.jiafensi').find('.delfans').html(parseInt(fans)+1);
+   					btn.parents('.list-right').find('dd').remove();
+   					var followed = $('<dt>√&nbsp;已关注</dt><dd class="del-follow" uid='+uid+' type="1">移除</dd>');
+   					btn.parents('.jiafensi').find('.delfans').html(parseInt(fans)+1);
+   					// btn.parents('.list-right').find('dd').remove();
+   					btn.parents('.list-right').append(followed);
+   					btn.remove();
+   
+   				}
+   			});
+   		});
+
+   });
+   
+   //移除我关注的好友
+   $('.del-follow').live('click',function(){
+   		var btn = $(this);
+   		//要移除follow表里的她
+   		// btn.parents('.list-right').find('dd').remove();
+   		// btn.parents('.list-right').find('dt').remove();
+   		var uid = btn.attr('uid');
+   		var fans = btn.parents('.jiafensi').find('.delfans').html();
+   		$.post('followdel',{uid:uid},function(data){
+   			if(data==1){
+   				var add = $('<dt class="add-fl" uid='+uid+'>+&nbsp;关注</dt>');
+   				// alert(111)
+   				// console.log(btn.parents('.list-right').find('dt'));
+   				btn.parents('.jiafensi').find('.delfans').html(parseInt(fans)-1);
+   				btn.parents('.list-right').find('dt').remove();
+
+   				btn.parents('.list-right').append(add);
+   				btn.parents('.list-right').find('dd').remove();
+   				
+
+   			}
+   		})
+   })
+
+
 
     //好友关注
-   $('.add-fl').click(function () {
-   		var followLeft = ($(window).width() - $('#follow').width()) / 2;
-	 	var followTop = $(document).scrollTop() + ($(window).height() - $('#follow').height()) / 2;
-   		var flObj = $('#follow').show().css({
-	 		'left' : followLeft,
-	 		'top' : followTop
-	 	});
-   		createBg('follow-bg');
-   		drag(flObj, flObj.find('.follow_head'));
-   		$('input[name=follow]').val($(this).attr('uid'));
-   });
+   // $('.add-fl').click(function () {
+   // 		var followLeft = ($(window).width() - $('#follow').width()) / 2;
+	 	// var followTop = $(document).scrollTop() + ($(window).height() - $('#follow').height()) / 2;
+   // 		var flObj = $('#follow').show().css({
+	 	// 	'left' : followLeft,
+	 	// 	'top' : followTop
+	 	// });
+   // 		createBg('follow-bg');
+   // 		drag(flObj, flObj.find('.follow_head'));
+   // 		$('input[name=follow]').val($(this).attr('uid'));
+   // });
    //添加关注
-   $('.add-follow-sub').click(function () {
-   		var follow = $('input[name=follow]').val();
-   		var group = $('select[name=gid]').val();
-   		$.post(addFollow, {
-   			'follow' : follow,
-   			'gid' : group
-   		}, function (data) {
-   			if (data.status) {
-   				$('.add-fl[uid=' + follow + ']').removeClass('add-fl').html('√&nbsp;已关注');
-   				$('#follow').hide();
-   				$('#follow-bg').remove();
-   			} else {
-   				alert(data.msg);
-   			}
-   		}, 'json');
-   });
-   //关闭关注框
-   $('.follow-cencle').click(function () {
-   		$('#follow').hide();
-   		$('#follow-bg').remove();
-   });
+   // $('.add-follow-sub').click(function () {
+   // 		var follow = $('input[name=follow]').val();
+   // 		var group = $('select[name=gid]').val();
+   // 		$.post(addFollow, {
+   // 			'follow' : follow,
+   // 			'gid' : group
+   // 		}, function (data) {
+   // 			if (data.status) {
+   // 				$('.add-fl[uid=' + follow + ']').removeClass('add-fl').html('√&nbsp;已关注');
+   // 				$('#follow').hide();
+   // 				$('#follow-bg').remove();
+   // 			} else {
+   // 				alert(data.msg);
+   // 			}
+   // 		}, 'json');
+   // });
+   // //关闭关注框
+   // $('.follow-cencle').click(function () {
+   // 		$('#follow').hide();
+   // 		$('#follow-bg').remove();
+   // });
 
    //移除关注与粉丝
-   $('.del-follow').click(function () {
-   		var data = {
-   			uid : $(this).attr('uid'),
-   			type : $(this).attr('type')
-   		};
-   		var isDel = confirm('确认移除?');
-   		var obj = $(this).parents('li');
+   // $('.del-follow').click(function () {
+   // 		var data = {
+   // 			uid : $(this).attr('uid'),
+   // 			type : $(this).attr('type')
+   // 		};
+   // 		var isDel = confirm('确认移除?');
+   // 		var obj = $(this).parents('li');
 
-   		if (isDel) {
-   			$.post(delFollow, data, function (data) {
-   				if (data) {
-   					obj.slideUp('slow', function () {
-   						obj.remove();
-   					})
-   				} else {
-   					alert('移除失败请重试...');
-   				}
-   			}, 'json');
-   		}
-   });
+   // 		if (isDel) {
+   // 			$.post(delFollow, data, function (data) {
+   // 				if (data) {
+   // 					obj.slideUp('slow', function () {
+   // 						obj.remove();
+   // 					})
+   // 				} else {
+   // 					alert('移除失败请重试...');
+   // 				}
+   // 			}, 'json');
+   // 		}
+   // });
 
    //搜索切换
    $('.sech-type').click(function () {

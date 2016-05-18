@@ -33,7 +33,7 @@
                     <span>你还可以输入<span id='send_num'>140</span>个字</span>
                 </div>
                 <div class='send_write'>
-                    <form action='' method='post'  name='weibo'>
+                    <form action='{:U("Home/Common/send")}' method='post'  name='weibo'>
                         <textarea sign='weibo' name='content'></textarea>
                         <span class='ta_right'></span>
                         <div class='send_tool'>
@@ -69,7 +69,7 @@
     没有发布的微博
 <else/>
 
-<foreach name='weibo' item='v'>
+<foreach name='wb' item='v'>
     <if condition='!$v["isturn"]'>
 <!--====================普通微博样式====================-->
             <div class="weibo">
@@ -78,7 +78,7 @@
                     <a href="{:U('/' . $v['uid'])}">
                         <img src="
                         <if condition='$v["face"]'>
-                            __ROOT__/Uploads/Face/{$v.face}
+                            __PUBLIC__/Home/Uploads/Face/{$v.face}
                         <else/>
                             __PUBLIC__/Home/Images/noface.gif
                         </if>" width='50px' height='50px'/>
@@ -100,7 +100,7 @@
                         <dd>
                             <div class='wb_img'>
                             <!--小图-->
-                                <img src="__ROOT__/Uploads/Pic/{$v.mini}" class='mini_img'/>
+                                <img src="__PUBLIC__/Home/Uploads/Pic/{$v.mini}" class='mini_img'/>
                                 <div class="img_tool hidden">
                                     <ul>
                                         <li>
@@ -110,11 +110,11 @@
                                         <li>|</li>
                                         <li>
                                             <i class='icon icon-bigpic'></i>
-                                            <a href="__ROOT__/Uploads/Pic/{$v.max}" target='_blank'>&nbsp;查看大图</a>
+                                            <a href="__PUBLIC__/Home/Uploads/Pic/{$v.max}" target='_blank'>&nbsp;查看大图</a>
                                         </li>
                                     </ul>
                                 <!--中图-->
-                                    <div class="img_info"><img src="__ROOT__/Uploads/Pic/{$v.medium}"/></div>
+                                    <div class="img_info"><img src="__PUBLIC__/Home/Uploads/Pic/{$v.medium}"/></div>
                                 </div>
                             </div>
                         </dd>
@@ -141,7 +141,7 @@
                     </div>
                 <!--=====回复框=====-->
                     <div class='comment_load hidden'>
-                        <img src="__PUBLIC__/Images/loading.gif">评论加载中，请稍候...
+                        <img src="__PUBLIC__/Home/Images/loading.gif">评论加载中，请稍候...
                     </div>
                     <div class='comment_list hidden'>
                         <textarea name="" sign='comment{$key}'></textarea>
@@ -166,7 +166,7 @@
                     <a href="{:U('/' . $v['uid'])}">
                         <img src="
                         <if condition='$v["face"]'>
-                            __ROOT__/Uploads/Face/{$v.face}
+                            __PUBLIC__/Home/Uploads/Face/{$v.face}
                         <else/>
                             __PUBLIC__/Home/Images/noface.gif
                         </if>" width='50' height='50'/>

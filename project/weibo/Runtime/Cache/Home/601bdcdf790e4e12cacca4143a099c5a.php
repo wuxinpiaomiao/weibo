@@ -3,15 +3,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<title><?php echo (C("WEBNAME")); ?>-我的私信</title>
-	<link rel="stylesheet" href="/project/Public/Theme/<?php echo ($style); ?>/Css/nav.css" />
-	<link rel="stylesheet" href="/project/Public/Theme/<?php echo ($style); ?>/Css/letter.css" />
-	<link rel="stylesheet" href="/project/Public/Theme/<?php echo ($style); ?>/Css/bottom.css" />
-	<script type="text/javascript" src='/project/Public/Js/jquery-1.7.2.min.js'></script>
-    <script type="text/javascript" src='/project/Public/Js/nav.js'></script>
-    <script type='text/javascript' src='/project/Public/Js/letter.js'></script>
-    <script type="text/javascript">
-        var delLetter = "<?php echo U('delLetter');?>";
-    </script>
+	<link rel="stylesheet" href="/Public/Home/Theme/default/Css/nav.css" />
+	<link rel="stylesheet" href="/Public/Home/Theme/default/Css/letter.css" />
+	<link rel="stylesheet" href="/Public/Home/Theme/default/Css/bottom.css" />
+	<script type="text/javascript" src='/Public/Home/Js/jquery-1.8.3.min.js'></script>
+    <script type="text/javascript" src='/Public/Home/Js/nav.js'></script>
+    <script type='text/javascript' src='/Public/Home/Js/letter.js'></script>
+    
 <script type='text/javascript'>
     var delFollow = "<?php echo U('Common:delFollow');?>";
     var editStyle = "<?php echo U('Common:editStyle');?>";
@@ -25,10 +23,10 @@
             <div class='top_wrap'>
                 <div class="logo fleft"></div>
                 <ul class='top_left fleft'>
-                    <li class='cur_bg'><a href='/project/index.php'>首页</a></li>
-                    <li><a href="<?php echo U('User/letter');?>">私信</a></li>
-                    <li><a href="<?php echo U('User/comment');?>">评论</a></li>
-                    <li><a href="<?php echo U('User/atme');?>">@我</a></li>
+                    <li class='cur_bg'><a href='<?php echo U("Home/Index/index");?>'>首页</a></li>
+                    <li><a href="<?php echo U('Home/User/letter');?>">私信</a></li>
+                    <li><a href="<?php echo U('Home/User/comment');?>">评论</a></li>
+                    <li><a href="<?php echo U('Home/User/atme');?>">@我</a></li>
                 </ul>
                 <div id="search" class='fleft'>
                     <form action='<?php echo U("Search/sechUser");?>' method='get'>
@@ -37,23 +35,24 @@
                     </form>
                 </div>
                 <div class="user fleft">
+
                     <a href="<?php echo U('/' . session('uid'));?>"><?php echo (M('userinfo')->where(array('uid' => session('uid')))->getField('username')); ?></a>
                 </div>
                 <ul class='top_right fleft'>
                     <li title='快速发微博' class='fast_send'><i class='icon icon-write'></i></li>
                     <li class='selector'><i class='icon icon-msg'></i>
                         <ul class='hidden'>
-                            <li><a href="<?php echo U('User/comment');?>">查看评论</a></li>
-                            <li><a href="<?php echo U('User/letter');?>">查看私信</a></li>
-                            <li><a href="<?php echo U('User/keep');?>">查看收藏</a></li>
-                            <li><a href="<?php echo U('User/atme');?>">查看@我</a></li>
+                            <li><a href="<?php echo U('Home/User/comment');?>">查看评论</a></li>
+                            <li><a href="<?php echo U('Home/User/letter');?>">查看私信</a></li>
+                            <li><a href="<?php echo U('Home/User/keep');?>">查看收藏</a></li>
+                            <li><a href="<?php echo U('Home/User/atme');?>">查看@我</a></li>
                         </ul>
                     </li>
                     <li class='selector'><i class='icon icon-setup'></i>
                         <ul class='hidden'>
-                            <li><a href="<?php echo U('UserSetting/index');?>">帐号设置</a></li>
+                            <li><a href="<?php echo U('Home/UserSetting/index');?>">帐号设置</a></li>
                             <li><a href="" class='set_model'>模版设置</a></li>
-                            <li><a href="<?php echo U('Index/loginOut');?>">退出登录</a></li>
+                            <li><a href="<?php echo U('Home/Index/loginOut');?>">退出登录</a></li>
                         </ul>
                     </li>
                 <!--信息推送-->
@@ -109,10 +108,10 @@
             <span class="close fright"></span>
         </div>
         <ul>
-            <li style='background:url(/project/Public/Home/Images/default.jpg) no-repeat;' theme='default'></li>
-            <li style='background:url(/project/Public/Home/Images/style2.jpg) no-repeat;' theme='style2'></li>
-            <li style='background:url(/project/Public/Home/Images/style3.jpg) no-repeat;' theme='style3'></li>
-            <li style='background:url(/project/Public/Home/Images/style4.jpg) no-repeat;' theme='style4'></li>
+            <li style='background:url(/Public/Home/Images/default.jpg) no-repeat;' theme='default'></li>
+            <li style='background:url(/Public/Home/Images/style2.jpg) no-repeat;' theme='style2'></li>
+            <li style='background:url(/Public/Home/Images/style3.jpg) no-repeat;' theme='style3'></li>
+            <li style='background:url(/Public/Home/Images/style4.jpg) no-repeat;' theme='style4'></li>
         </ul>
         <div class='model_operat'>
             <span class='model_save'>保存</span>
@@ -128,7 +127,7 @@
         <!--=====左侧=====-->
     <div id="left" class='fleft'>
         <ul class='left_nav'>
-            <li><a href="/project/index.php"><i class='icon icon-home'></i>&nbsp;&nbsp;首页</a></li>
+            <li><a href=""><i class='icon icon-home'></i>&nbsp;&nbsp;首页</a></li>
             <li><a href="<?php echo U('User/atme');?>"><i class='icon icon-at'></i>&nbsp;&nbsp;提到我的</a></li>
             <li><a href="<?php echo U('User/comment');?>"><i class='icon icon-comment'></i>&nbsp;&nbsp;评论</a></li>
             <li><a href="<?php echo U('User/letter');?>"><i class='icon icon-letter'></i>&nbsp;&nbsp;私信</a></li>
@@ -138,7 +137,7 @@
             <fieldset><legend>分组</legend></fieldset>
             <ul>
                 <?php $group = M("group")->where(array('uid' => session('uid')))->select(); ?>
-                <li><a href="/project/index.php"><i class='icon icon-group'></i>&nbsp;&nbsp;全部</a></li>
+                <li><a href=""><i class='icon icon-group'></i>&nbsp;&nbsp;全部</a></li>
                 <?php if(is_array($group)): foreach($group as $key=>$v): ?><li>
                         <a href="<?php echo U('Index/index', array('gid' => $v['id']));?>"><i class='icon icon-group'></i>&nbsp;&nbsp;<?php echo ($v["name"]); ?></a>
                     </li><?php endforeach; endif; ?>
@@ -170,16 +169,16 @@
 			<p class='title'>我的私信（共<?php echo ($count); ?>条）<span class='send'>发送私信</span></p>
         <?php if(is_array($letter)): foreach($letter as $key=>$v): ?><dl>
 				<dt>
-					<a href="<?php echo U('/' . $v['uid']);?>"><img src="<?php if($v["face"]): ?>/project/Uploads/Face/<?php echo ($v["face"]); else: ?>/project/Public/Images/noface.gif<?php endif; ?>" width='50' height='50'/></a>
+					<a href="<?php echo U('/' . $v['uid']);?>"><img src="<?php if($v["face"]): ?>/Uploads/Face/<?php echo ($v["face"]); else: ?>/Public/Images/noface.gif<?php endif; ?>" width='50' height='50'/></a>
 				</dt>
 				<dd>
 					<a href="<?php echo U('/' . $v['uid']);?>"><?php echo ($v["username"]); ?></a>：
 					<span><?php echo ($v["content"]); ?></span>
 				</dd>
 				<dd class='tright'>
-                    <span class="send_time"><?php echo (time_format($v["time"])); ?></span>
+                    <span class="send_time"><?php echo ($v["time"]); ?></span>
 					<span class='del-letter' lid='<?php echo ($v["id"]); ?>'>删除</span> &nbsp;|&nbsp;
-					<span class='l-reply'>回复</span>
+					<span class='l-reply' form="<?php echo ($v["from"]); ?>">发送</span>
 				</dd>
 			</dl><?php endforeach; endif; ?>
         </div>
@@ -190,7 +189,7 @@
     <dl class="user_face">
         <dt>
             <a href="<?php echo U('/' . $uid);?>">
-                <img src="<?php if($face): ?>/project/Uploads/Face/<?php echo ($face); else: ?>/project/Public/Home/Images/noface.gif<?php endif; ?>" width='80' height='80' alt="<?php echo ($username); ?>" />
+                <img src="<?php if($face): ?>/Public/<?php echo ($face); else: ?>/Public/Home/Images/noface.gif<?php endif; ?>" width='80' height='80' alt="<?php echo ($username); ?>" />
             </a>
         </dt>
         <dd>
@@ -215,7 +214,7 @@
                         <dl>
                             <dt>
                                 <a href="<?php echo U('/' . $uid);?>">
-                                    <img src="<?php if($face): ?>/project/Uploads/Face/<?php echo ($face); else: ?>/project/Public/Home/Images/noface.gif<?php endif; ?>" width='30' height='30'/>
+                                    <img src="<?php if($face): ?>/Public/<?php echo ($face); else: ?>/Public/Home/Images/noface.gif<?php endif; ?>" width='30' height='30'/>
                                 </a>
                             </dt>
                             <dd><a href="<?php echo U('/' . $uid);?>"><?php echo ($username); ?></a></dd>
@@ -243,7 +242,7 @@
 
 <!--私信弹出框-->
 <div id='letter'>
-    <form action='<?php echo U("letterSend");?>' method='post'>
+   
         <div class="letter_head">
             <span class='letter_text fleft'>发送私信</span>
         </div>
@@ -254,10 +253,10 @@
             内容：<textarea name="content"></textarea>
         </div>
         <div class='lt-btn-wrap'>
-            <input type="submit" value='发送' class='send-lt-sub'/>
+            <input  value='发送' class='send-lt-sub'/>
             <span class='letter-cencle'>取消</span>
         </div>
-    </form>
+    
 </div>
 <!--==========底部==========-->
 <!--==========底部==========-->
@@ -341,54 +340,54 @@
             <span class='close fright'></span>
         </div>
         <ul>
-            <li><img src="/project/Public/Home/Images/phiz/hehe.gif" alt="呵呵" title="呵呵" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/xixi.gif" alt="嘻嘻" title="嘻嘻" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/haha.gif" alt="哈哈" title="哈哈" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/keai.gif" alt="可爱" title="可爱" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/kelian.gif" alt="可怜" title="可怜" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/wabisi.gif" alt="挖鼻屎" title="挖鼻屎" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/chijing.gif" alt="吃惊" title="吃惊" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/haixiu.gif" alt="害羞" title="害羞" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/jiyan.gif" alt="挤眼" title="挤眼" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/bizui.gif" alt="闭嘴" title="闭嘴" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/bishi.gif" alt="鄙视" title="鄙视" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/aini.gif" alt="爱你" title="爱你" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/lei.gif" alt="泪" title="泪" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/touxiao.gif" alt="偷笑" title="偷笑" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/qinqin.gif" alt="亲亲" title="亲亲" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/shengbin.gif" alt="生病" title="生病" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/taikaixin.gif" alt="太开心" title="太开心" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/ldln.gif" alt="懒得理你" title="懒得理你" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/youhenhen.gif" alt="右哼哼" title="右哼哼" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/zuohenhen.gif" alt="左哼哼" title="左哼哼" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/xiu.gif" alt="嘘" title="嘘" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/shuai.gif" alt="衰" title="衰" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/weiqu.gif" alt="委屈" title="委屈" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/tu.gif" alt="吐" title="吐" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/dahaqian.gif" alt="打哈欠" title="打哈欠" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/baobao.gif" alt="抱抱" title="抱抱" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/nu.gif" alt="怒" title="怒" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/yiwen.gif" alt="疑问" title="疑问" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/canzui.gif" alt="馋嘴" title="馋嘴" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/baibai.gif" alt="拜拜" title="拜拜" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/sikao.gif" alt="思考" title="思考" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/han.gif" alt="汗" title="汗" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/kun.gif" alt="困" title="困" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/shuijiao.gif" alt="睡觉" title="睡觉" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/qian.gif" alt="钱" title="钱" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/shiwang.gif" alt="失望" title="失望" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/ku.gif" alt="酷" title="酷" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/huaxin.gif" alt="花心" title="花心" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/heng.gif" alt="哼" title="哼" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/guzhang.gif" alt="鼓掌" title="鼓掌" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/yun.gif" alt="晕" title="晕" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/beishuang.gif" alt="悲伤" title="悲伤" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/zuakuang.gif" alt="抓狂" title="抓狂" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/heixian.gif" alt="黑线" title="黑线" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/yinxian.gif" alt="阴险" title="阴险" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/numa.gif" alt="怒骂" title="怒骂" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/xin.gif" alt="心" title="心" /></li>
-            <li><img src="/project/Public/Home/Images/phiz/shuangxin.gif" alt="伤心" title="伤心" /></li>
+            <li><img src="/Public/Home/Images/phiz/hehe.gif" alt="呵呵" title="呵呵" /></li>
+            <li><img src="/Public/Home/Images/phiz/xixi.gif" alt="嘻嘻" title="嘻嘻" /></li>
+            <li><img src="/Public/Home/Images/phiz/haha.gif" alt="哈哈" title="哈哈" /></li>
+            <li><img src="/Public/Home/Images/phiz/keai.gif" alt="可爱" title="可爱" /></li>
+            <li><img src="/Public/Home/Images/phiz/kelian.gif" alt="可怜" title="可怜" /></li>
+            <li><img src="/Public/Home/Images/phiz/wabisi.gif" alt="挖鼻屎" title="挖鼻屎" /></li>
+            <li><img src="/Public/Home/Images/phiz/chijing.gif" alt="吃惊" title="吃惊" /></li>
+            <li><img src="/Public/Home/Images/phiz/haixiu.gif" alt="害羞" title="害羞" /></li>
+            <li><img src="/Public/Home/Images/phiz/jiyan.gif" alt="挤眼" title="挤眼" /></li>
+            <li><img src="/Public/Home/Images/phiz/bizui.gif" alt="闭嘴" title="闭嘴" /></li>
+            <li><img src="/Public/Home/Images/phiz/bishi.gif" alt="鄙视" title="鄙视" /></li>
+            <li><img src="/Public/Home/Images/phiz/aini.gif" alt="爱你" title="爱你" /></li>
+            <li><img src="/Public/Home/Images/phiz/lei.gif" alt="泪" title="泪" /></li>
+            <li><img src="/Public/Home/Images/phiz/touxiao.gif" alt="偷笑" title="偷笑" /></li>
+            <li><img src="/Public/Home/Images/phiz/qinqin.gif" alt="亲亲" title="亲亲" /></li>
+            <li><img src="/Public/Home/Images/phiz/shengbin.gif" alt="生病" title="生病" /></li>
+            <li><img src="/Public/Home/Images/phiz/taikaixin.gif" alt="太开心" title="太开心" /></li>
+            <li><img src="/Public/Home/Images/phiz/ldln.gif" alt="懒得理你" title="懒得理你" /></li>
+            <li><img src="/Public/Home/Images/phiz/youhenhen.gif" alt="右哼哼" title="右哼哼" /></li>
+            <li><img src="/Public/Home/Images/phiz/zuohenhen.gif" alt="左哼哼" title="左哼哼" /></li>
+            <li><img src="/Public/Home/Images/phiz/xiu.gif" alt="嘘" title="嘘" /></li>
+            <li><img src="/Public/Home/Images/phiz/shuai.gif" alt="衰" title="衰" /></li>
+            <li><img src="/Public/Home/Images/phiz/weiqu.gif" alt="委屈" title="委屈" /></li>
+            <li><img src="/Public/Home/Images/phiz/tu.gif" alt="吐" title="吐" /></li>
+            <li><img src="/Public/Home/Images/phiz/dahaqian.gif" alt="打哈欠" title="打哈欠" /></li>
+            <li><img src="/Public/Home/Images/phiz/baobao.gif" alt="抱抱" title="抱抱" /></li>
+            <li><img src="/Public/Home/Images/phiz/nu.gif" alt="怒" title="怒" /></li>
+            <li><img src="/Public/Home/Images/phiz/yiwen.gif" alt="疑问" title="疑问" /></li>
+            <li><img src="/Public/Home/Images/phiz/canzui.gif" alt="馋嘴" title="馋嘴" /></li>
+            <li><img src="/Public/Home/Images/phiz/baibai.gif" alt="拜拜" title="拜拜" /></li>
+            <li><img src="/Public/Home/Images/phiz/sikao.gif" alt="思考" title="思考" /></li>
+            <li><img src="/Public/Home/Images/phiz/han.gif" alt="汗" title="汗" /></li>
+            <li><img src="/Public/Home/Images/phiz/kun.gif" alt="困" title="困" /></li>
+            <li><img src="/Public/Home/Images/phiz/shuijiao.gif" alt="睡觉" title="睡觉" /></li>
+            <li><img src="/Public/Home/Images/phiz/qian.gif" alt="钱" title="钱" /></li>
+            <li><img src="/Public/Home/Images/phiz/shiwang.gif" alt="失望" title="失望" /></li>
+            <li><img src="/Public/Home/Images/phiz/ku.gif" alt="酷" title="酷" /></li>
+            <li><img src="/Public/Home/Images/phiz/huaxin.gif" alt="花心" title="花心" /></li>
+            <li><img src="/Public/Home/Images/phiz/heng.gif" alt="哼" title="哼" /></li>
+            <li><img src="/Public/Home/Images/phiz/guzhang.gif" alt="鼓掌" title="鼓掌" /></li>
+            <li><img src="/Public/Home/Images/phiz/yun.gif" alt="晕" title="晕" /></li>
+            <li><img src="/Public/Home/Images/phiz/beishuang.gif" alt="悲伤" title="悲伤" /></li>
+            <li><img src="/Public/Home/Images/phiz/zuakuang.gif" alt="抓狂" title="抓狂" /></li>
+            <li><img src="/Public/Home/Images/phiz/heixian.gif" alt="黑线" title="黑线" /></li>
+            <li><img src="/Public/Home/Images/phiz/yinxian.gif" alt="阴险" title="阴险" /></li>
+            <li><img src="/Public/Home/Images/phiz/numa.gif" alt="怒骂" title="怒骂" /></li>
+            <li><img src="/Public/Home/Images/phiz/xin.gif" alt="心" title="心" /></li>
+            <li><img src="/Public/Home/Images/phiz/shuangxin.gif" alt="伤心" title="伤心" /></li>
         </ul>
     </div>
 <!--==========表情==========-->
